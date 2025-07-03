@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Sevgilim İçin Sürpriz Oyun</title>
+
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #fff8b3; /* Açık sarı, göz yormaz */
+        background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24"><text x="12" y="16" font-size="30" fill="%230066cc" text-anchor="middle">💙</text></svg>');
+        background-repeat: no-repeat;
+        background-position: center center;
+        color: #2a2a72;
+        text-align: center;
+        padding: 40px 20px;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+    h1, h2 {
+        margin-bottom: 10px;
+    }
+    h1 {
+        font-size: 3rem;
+        color: #0055cc;
+        transition: opacity 1s ease;
+    }
+    h2 {
+        font-size: 1.5rem;
+        color: #004499;
+        margin-bottom: 20px;
+    }
+    button {
+        font-size: 20px;
+        margin: 15px 10px;
+        padding: 12px 25px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        background-color: #3399ff;
+        color: white;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+    button:hover {
+        background-color: #007acc;
+        transform: scale(1.05);
+    }
+    #btnNo {
+        background-color: #7777cc;
+        cursor: pointer;
+    }
+    #btnNo:hover {
+        background-color: #5555aa;
+    }
+    #sadEmoji {
+        font-size: 50px;
+        margin-top: 20px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    #sadText {
+        font-size: 22px;
+        color: #444466;
+        margin-left: 10px;
+        vertical-align: middle;
+        display: none; /* Başlangıçta gizli */
+        transition: opacity 0.5s ease;
+    }
+    #poem {
+        font-size: 18px;
+        color: #003366;
+        white-space: pre-line;
+        margin: 20px auto 30px auto;
+        max-width: 400px;
+        display: none;
+        font-style: italic;
+    }
+    #welcomeScreen, #mainContent {
+        transition: opacity 0.7s ease;
+    }
+    #continueBtn {
+        font-size: 18px;
+        background-color: #3399ff;
+        color: white;
+        border-radius: 20px;
+        padding: 8px 25px;
+        border: none;
+        cursor: pointer;
+        margin-top: 15px;
+    }
+    #continueBtn:hover {
+        background-color: #007acc;
+    }
+    #orkideImg {
+        margin-top: 20px;
+        max-width: 250px;
+        border-radius: 15px;
+        box-shadow: 0 0 10px #66aaff;
+        display: none; /* Başlangıçta gizli */
+    }
+</style>
+</head>
+
+<body>
+
+<div id="welcomeScreen">
+    <h1>Hoş geldin sevgilim 💙</h1>
+    <h2>Devamını görmek ister misin Lübbetüleynim?</h2>
+    <button id="continueBtn">Devam et 💙</button>
+</div>
+
+<div id="mainContent" style="display:none;">
+    <h1>Beni seviyor musun?</h1>
+
+    <button id="btnYes">Çook seviyorum</button>
+    <button id="btnNo">Seviyorum başkan</button>
+
+    <div id="poem">
+Ben de seni çoook seviyorum, ömrüm, her şeyim...  
+Seninle bir ömrüm olsun,  
+Seninle unutulmaz zamanlarım…  
+Sana tutsak gönlüm olsun,  
+Bedenimden çıksa anlarım.
+Her şeyde sen varsın,
+Baktığım her yönde sen…
+Kıyamet kopsun varsın,
+Cehennemim, cennetim sen…
+
+    </div>
+
+    <div id="sadEmoji" style="display:none;">😔</div>
+    <div id="sadText">eyvallah başkan, mezara kadar</div>
+
+    <!-- Orkide PNG buraya ekleniyor, kendi dosyanın adını yaz -->
+    <img id="orkideImg" src="orkide.png" alt="Orkide Sürpriz" />
+</div>
+
+<script>
+    const welcomeScreen = document.getElementById('welcomeScreen');
+    const mainContent = document.getElementById('mainContent');
+    const continueBtn = document.getElementById('continueBtn');
+    const btnYes = document.getElementById('btnYes');
+    const btnNo = document.getElementById('btnNo');
+    const poem = document.getElementById('poem');
+    const sadEmoji = document.getElementById('sadEmoji');
+    const sadText = document.getElementById('sadText');
+    const orkideImg = document.getElementById('orkideImg');
+
+    continueBtn.onclick = () => {
+        welcomeScreen.style.opacity = 0;
+        setTimeout(() => {
+            welcomeScreen.style.display = 'none';
+            mainContent.style.display = 'block';
+            mainContent.style.opacity = 0;
+            setTimeout(() => {
+                mainContent.style.opacity = 1;
+            }, 50);
+        }, 700);
+    };
+
+    btnYes.onclick = () => {
+        poem.style.display = 'block';
+        orkideImg.style.display = 'block';  // Orkideyi göster
+        poem.scrollIntoView({behavior: 'smooth'});
+    };
+
+    btnNo.onclick = () => {
+        sadEmoji.style.display = 'inline-block';
+        sadText.style.display = 'inline-block';
+
+        // 3 saniye sonra gizle
+        setTimeout(() => {
+            sadEmoji.style.display = 'none';
+            sadText.style.display = 'none';
+        }, 3000);
+    };
+</script>
+
+</body>
+</html>
